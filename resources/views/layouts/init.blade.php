@@ -24,7 +24,7 @@
 		<link rel="stylesheet" href="{{asset('plugin/assets/css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
 		<link rel="stylesheet" href="{{asset('plugin/assets/css/ace-skins.min.css')}}" />
 		<link rel="stylesheet" href="{{asset('plugin/assets/css/ace-rtl.min.css')}}" />
-		@section('styles')
+		@yield('styles')
 		<!-- ace settings handler -->
 		<script src="{{asset('plugin/assets/js/ace-extra.min.js')}}"></script>
 	</head>
@@ -41,48 +41,40 @@
 				<div class="navbar-header pull-left">
 					<a href="" class="navbar-brand">
 						<small>
-							<i class="fa fa-bars"></i>
-							KARDEX -ZAIRE LTDA.
+							<i class="fa fa-bars"></i> KARDEX - ZAIRE LTDA.
 						</small>
 					</a>
 				</div>
-
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-						
-
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="{{asset('plugin/assets/images/avatars/user.jpg')}}" alt="Bienvenido Usuario" />
+								@if(Auth::user()->us_genero=='Femenino')
+								<img class="nav-user-photo" src="{{asset('plugin/assets/images/avatars/avatar3.png')}}" alt="Bienvenido Usuario" />
+								@else
+								<img class="nav-user-photo" src="{{asset('plugin/assets/images/avatars/avatar4.png')}}" alt="Bienvenido Usuario" />
+								@endif
 								<span class="user-info">
 									<small>Bienvenido,</small>
 									Edwin
 								</span>
-
 								<i class="ace-icon fa fa-caret-down"></i>
 							</a>
-
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="#">
-										<i class="ace-icon fa fa-cog"></i>
-										Settings
+									<a href="">
+										<i class="ace-icon fa fa-cog"></i> Configuración
 									</a>
 								</li>
-
 								<li>
 									<a href="profile.html">
-										<i class="ace-icon fa fa-user"></i>
-										Profile
+										<i class="ace-icon fa fa-user"></i> Mis Datos
 									</a>
 								</li>
-
 								<li class="divider"></li>
-
 								<li>
-									<a href="#">
-										<i class="ace-icon fa fa-power-off"></i>
-										Logout
+									<a href="{{ url('/logout') }}">
+										<i class="ace-icon fa fa-power-off"></i> Salir
 									</a>
 								</li>
 							</ul>
@@ -96,12 +88,10 @@
 			<script type="text/javascript">
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
-
 			<div id="sidebar" class="sidebar responsive ace-save-state">
 				<script type="text/javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
-
 				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
 						<img src="{{ asset('plugin/login/img/zaire.jpg') }}" width="180px" height="100px" />
@@ -129,22 +119,19 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="{{ url('/home') }}">Principal</a>
 							</li>
-
 							<li>
-								<a href="#">@section('actual')</a>
+								<a href="#">@yield('actual')</a>
 							</li>
 						</ul><!-- /.breadcrumb -->
-
 						<div class="nav-search" id="nav-search">
 							<form class="form-search">
 								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<input type="text" placeholder="Buscar..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
 									<i class="ace-icon fa fa-search nav-search-icon"></i>
 								</span>
 							</form>
 						</div><!-- /.nav-search -->
 					</div>
-
 					<div class="page-content">
 						<div class="ace-settings-container" id="ace-settings-container">
 							<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
@@ -154,8 +141,16 @@
 							@include('layouts.config')
 
 						</div><!-- /.ace-settings-container -->
+						<div class="page-header">
+							<h1>
+								@yield('titulo')
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i> @yield('detalle')
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
 
-						@section('cuerpo')
+						@yield('cuerpo')
 
 					</div><!-- /.page-content -->
 				</div>
@@ -165,20 +160,16 @@
 				<div class="footer-inner">
 					<div class="footer-content">
 						<span class="bigger-120">
-							<span class="green bolder">ZAIRE</span>
-							Application - Kardex &copy; 2017
+							<span class="green bolder">ZAIRE</span> Application - Kardex &copy; 2017
 						</span>
-
 						&nbsp; &nbsp;
 						<span class="action-buttons">
 							<a href="">
 								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
 							</a>
-
 							<a href="">
 								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
 							</a>
-
 							<a href="">
 								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
 							</a>
@@ -214,10 +205,14 @@
 		<script src="{{asset('plugin/assets/js/jquery.maskedinput.min.js')}}"></script>
 		<script src="{{asset('plugin/assets/js/bootstrap-tag.min.js')}}"></script>
 
+		@yield('scripts')
+
 		<!-- ace scripts -->
 		<script src="{{asset('plugin/assets/js/ace-elements.min.js')}}"></script>
 		<script src="{{asset('plugin/assets/js/ace.min.js')}}"></script>
-		@section('scripts')
+
+		@yield('codigoscript')
+
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {
@@ -234,7 +229,6 @@
 						inp.value="This text field is disabled!";
 					}
 				});
-			
 			
 				if(!ace.vars['touch']) {
 					$('.chosen-select').chosen({allow_single_deselect:true}); 
@@ -257,7 +251,6 @@
 						})
 					});
 			
-			
 					$('#chosen-multiple-style .btn').on('click', function(e){
 						var target = $(this).find('input[type=radio]');
 						var which = parseInt(target.val());
@@ -265,7 +258,6 @@
 						 else $('#form-field-select-4').removeClass('tag-input-style');
 					});
 				}
-			
 			
 				$('[data-rel=tooltip]').tooltip({container:'body'});
 				$('[data-rel=popover]').popover({container:'body'});
@@ -310,8 +302,6 @@
 					}
 				});
 			
-			
-				
 				//"jQuery UI Slider"
 				//range slider tooltip example
 				$( "#slider-range" ).css('height','200px').slider({
@@ -331,8 +321,7 @@
 					}
 				}).find('span.ui-slider-handle').on('blur', function(){
 					$(this.firstChild).hide();
-				});
-				
+				});	
 				
 				$( "#slider-range-max" ).slider({
 					range: "max",
@@ -369,8 +358,7 @@
 				});
 				//pre-show a file name, for example a previously selected file
 				//$('#id-input-file-1').ace_file_input('show_file_list', ['myfile.txt'])
-			
-			
+				
 				$('#id-input-file-3').ace_file_input({
 					style: 'well',
 					btn_choose: 'Drop files here or click to choose',
@@ -402,16 +390,12 @@
 					//console.log($(this).data('ace_input_method'));
 				});
 				
-				
 				//$('#id-input-file-3')
 				//.ace_file_input('show_file_list', [
 					//{type: 'image', name: 'name of image', path: 'http://path/to/image/for/preview'},
 					//{type: 'file', name: 'hello.txt'}
 				//]);
-			
-				
-				
-			
+		
 				//dynamically change allowed formats by changing allowExt && allowMime function
 				$('#id-file-format').removeAttr('checked').on('change', function() {
 					var whitelist_ext, whitelist_mime;
@@ -445,46 +429,7 @@
 					file_input
 					.off('file.error.ace')
 					.on('file.error.ace', function(e, info) {
-						//console.log(info.file_count);//number of selected files
-						//console.log(info.invalid_count);//number of invalid files
-						//console.log(info.error_list);//a list of errors in the following format
-						
-						//info.error_count['ext']
-						//info.error_count['mime']
-						//info.error_count['size']
-						
-						//info.error_list['ext']  = [list of file names with invalid extension]
-						//info.error_list['mime'] = [list of file names with invalid mimetype]
-						//info.error_list['size'] = [list of file names with invalid size]
-						
-						
-						/**
-						if( !info.dropped ) {
-							//perhapse reset file field if files have been selected, and there are invalid files among them
-							//when files are dropped, only valid files will be added to our file array
-							e.preventDefault();//it will rest input
-						}
-						*/
-						
-						
-						//if files have been selected (not dropped), you can choose to reset input
-						//because browser keeps all selected files anyway and this cannot be changed
-						//we can only reset file field to become empty again
-						//on any case you still should check files with your server side script
-						//because any arbitrary file can be uploaded by user and it's not safe to rely on browser-side measures
 					});
-					
-					
-					/**
-					file_input
-					.off('file.preview.ace')
-					.on('file.preview.ace', function(e, info) {
-						console.log(info.file.width);
-						console.log(info.file.height);
-						e.preventDefault();//to prevent preview
-					});
-					*/
-				
 				});
 			
 				$('#spinner1').ace_spinner({value:0,min:0,max:200,step:10, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
@@ -496,14 +441,6 @@
 				$('#spinner3').ace_spinner({value:0,min:-100,max:100,step:10, on_sides: true, icon_up:'ace-icon fa fa-plus bigger-110', icon_down:'ace-icon fa fa-minus bigger-110', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
 				$('#spinner4').ace_spinner({value:0,min:-100,max:100,step:10, on_sides: true, icon_up:'ace-icon fa fa-plus', icon_down:'ace-icon fa fa-minus', btn_up_class:'btn-purple' , btn_down_class:'btn-purple'});
 			
-				//$('#spinner1').ace_spinner('disable').ace_spinner('value', 11);
-				//or
-				//$('#spinner1').closest('.ace-spinner').spinner('disable').spinner('enable').spinner('value', 11);//disable, enable or change value
-				//$('#spinner1').closest('.ace-spinner').spinner('value', 0);//reset to 0
-			
-			
-				//datepicker plugin
-				//link
 				$('.date-picker').datepicker({
 					autoclose: true,
 					todayHighlight: true
@@ -515,7 +452,6 @@
 			
 				//or change it into a date range picker
 				$('.input-daterange').datepicker({autoclose:true});
-			
 			
 				//to translate the daterange picker, please copy the "examples/daterange-fr.js" contents here before initialization
 				$('input[name=date-range-picker]').daterangepicker({
@@ -529,7 +465,6 @@
 				.prev().on(ace.click_event, function(){
 					$(this).next().focus();
 				});
-			
 			
 				$('#timepicker1').timepicker({
 					minuteStep: 1,
@@ -545,10 +480,7 @@
 				}).next().on(ace.click_event, function(){
 					$(this).prev().focus();
 				});
-				
-				
-			
-				
+					
 				if(!ace.vars['old_ie']) $('#date-timepicker1').datetimepicker({
 				 //format: 'MM/DD/YYYY h:mm:ss A',//use this option to display seconds
 				 icons: {
@@ -576,9 +508,7 @@
 				//var picker = $('#simple-colorpicker-1').data('ace_colorpicker')
 				//picker.pick('red', true);//insert the color if it doesn't exist
 			
-			
 				$(".knob").knob();
-				
 				
 				var tag_input = $('#form-field-tags');
 				try{
@@ -612,8 +542,6 @@
 					//autosize($('#form-field-tags'));
 				}
 				
-				
-				/////////
 				$('#modal-form input[type=file]').ace_file_input({
 					style:'well',
 					btn_choose:'Drop files here or click to choose',
@@ -641,9 +569,7 @@
 				$('#modal-form').on('shown', function () {
 					$(this).find('.modal-chosen').chosen();
 				})
-				*/
-			
-				
+				*/				
 				
 				$(document).one('ajaxloadstart.page', function(e) {
 					autosize.destroy('textarea[class*=autosize]')
