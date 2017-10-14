@@ -21,8 +21,7 @@
                 <input type="password" class="input" id="password" placeholder="Contraseña" name="password" />
             </div>
             <button class="submit" id="submit" >INGRESAR</button>
-
-        </form>
+        </form>          
     </div>
     <script src="{{ asset('plugin/login/js/jquery.min.js') }}"></script>
     <script src="{{ asset('plugin/login/js/index.js') }}"></script>
