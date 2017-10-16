@@ -27,6 +27,7 @@
 		@yield('styles')
 		<!-- ace settings handler -->
 		<script src="{{asset('plugin/assets/js/ace-extra.min.js')}}"></script>
+		<link href="{{asset('plugin/toast/toastr.min.css')}}" rel="stylesheet"/>
 	</head>
 
 	<body class="no-skin">
@@ -210,6 +211,8 @@
 		<!-- ace scripts -->
 		<script src="{{asset('plugin/assets/js/ace-elements.min.js')}}"></script>
 		<script src="{{asset('plugin/assets/js/ace.min.js')}}"></script>
+		<script src="{{asset('plugin/toast/toastr.min.js')}}"></script>
+		{!! Toastr::render() !!}
 
 		@yield('codigoscript')
 

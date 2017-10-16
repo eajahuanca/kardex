@@ -13,7 +13,7 @@
             <div class="clearfix">
                 <div class="pull-left">
                     <a class="btn btn-success btn-round" href="{{ route('proveedor.create') }}">
-                        <i class="ace-icon fa fa-plus align-top"></i>
+                        <i class="ace-icon fa fa-plus align-center"></i>
                         <b>Nuevo Proveedor</b>
                     </a>
                 </div>
@@ -47,26 +47,32 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($proveedor as $item)
                         <tr>
                             <td class="center">
                                 <label class="pos-rel">
-                                    <input type="checkbox" class="ace" />
+                                    <input type="checkbox" class="ace" id="{{ $item->pro_codigo }}"/>
                                     <span class="lbl"></span>
                                 </label>
                             </td>
-
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
+                            <td>{{ $item->pro_codigo }}</td>
+                            <td>{{ $item->pro_nombre }}</td>
+                            <td>
+                                @if($item->pro_estado)
+                                    <span class="label label-sm label-warning">Activo</span>
+                                @else
+                                    <span class="label label-sm label-danger">Bloqueado</span>
+                                @endif
+                            </td>
+                            <td>{{ $item->created_at }}</td>
+                            <td>{{ $item->updated_at }}</td>
                             <td>
                                 <div class="hidden-sm hidden-xs action-buttons">
-                                    <a class="blue" href="#">
+                                    <a class="blue tooltip-info" data-rel="tooltip" title="Ver" href="#">
                                         <i class="ace-icon fa fa-search-plus bigger-130"></i>
                                     </a>
 
-                                    <a class="green" href="#">
+                                    <a class="green tooltip-success" data-rel="tooltip" title="Editar" href="{{ route('proveedor.edit',$item->id) }}">
                                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
 
@@ -110,7 +116,7 @@
                                 </div>
                             </td>
                         </tr>
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>
