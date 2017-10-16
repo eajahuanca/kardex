@@ -16,9 +16,9 @@
 	</li>
 
 	<li class="">
-		<a href="#" class="dropdown-toggle">
+		<a href="{{ url('/proveedor') }}">
 			<i class="menu-icon fa fa-fire"></i>
-			<span class="menu-text">Proveedores</span>
+			<span class="menu-text"> Proveedores </span>
 		</a>
 		<b class="arrow"></b>
 	</li>
