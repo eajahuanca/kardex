@@ -24,7 +24,7 @@
 	</li>
 
 	<li class="">
-		<a href="#" class="dropdown-toggle">
+		<a href="{{ url('/articulo') }}">
 			<i class="menu-icon fa fa-inbox"></i>
 			<span class="menu-text">Articulos</span>
 		</a>
@@ -32,7 +32,7 @@
 	</li>
 
 	<li class="">
-		<a href="#" class="dropdown-toggle">
+		<a href="{{ url('/pcliente') }}">
 			<i class="menu-icon fa fa-user"></i>
 			<span class="menu-text">Clientes Padres</span>
 		</a>
@@ -40,7 +40,7 @@
 	</li>
 
 	<li class="">
-		<a href="#" class="dropdown-toggle">
+		<a href="{{ url('/hcliente') }}">
 			<i class="menu-icon fa fa-pencil-square-o"></i>
 			<span class="menu-text">Clientes Hijos</span>
 		</a>
