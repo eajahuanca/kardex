@@ -21,3 +21,6 @@ Route::resource('/proveedor', 'ProveedorController');
 Route::resource('/articulo', 'ArticuloController');
 Route::resource('/pcliente', 'PClienteController');
 Route::resource('/hcliente', 'HClienteController');
+Route::resource('/salida', 'SalidaController');
+Route::resource('/kardexout', 'RegSalidaController');
+Route::resource('/kardexin', 'RegEntradaController');

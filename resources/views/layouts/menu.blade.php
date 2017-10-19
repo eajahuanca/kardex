@@ -48,9 +48,16 @@
 	</li>
 
 	<li class="">
-		<a href="#" class="dropdown-toggle">
+		<a href="{{ url('/salida') }}">
+			<i class="menu-icon fa fa-shopping-cart"></i>
+			<span class="menu-text">Salida Articulos</span>
+		</a>
+		<b class="arrow"></b>
+	</li>
+	<li class="">
+		<a href="{{ url('/kardexin') }}">
 			<i class="menu-icon fa fa-desktop"></i>
-			<span class="menu-text">Movimientos</span>
+			<span class="menu-text">Ingreso de Articulos</span>
 		</a>
 		<b class="arrow"></b>
 	</li>
