@@ -57,7 +57,7 @@
 								@endif
 								<span class="user-info">
 									<small>Bienvenido,</small>
-									Edwin
+									{{ Auth::user()->us_nombre }}
 								</span>
 								<i class="ace-icon fa fa-caret-down"></i>
 							</a>

@@ -22,6 +22,6 @@ class Movimiento extends Model
     }
 
     public function hcliente(){
-    	return $this->belongsTo('App\User','idhcliente','id');
+    	return $this->belongsTo('App\HCliente','idhcliente','id');
     }
 }

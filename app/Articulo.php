@@ -12,4 +12,8 @@ class Articulo extends Model
     public function proveedor(){
     	return $this->belongsTo('App\Proveedor','idproveedor','id');
     }
+
+    public function articulo(){
+    	return $this->hasMany('App\Movimiento');
+    }
 }

@@ -12,4 +12,8 @@ class HCliente extends Model
 	public function clientePadre(){
 		return $this->belongsTo('App\PCliente','idpcliente','id');
 	}
+
+	public function hcliente(){
+		return $this->hasMany('App\HCliente');
+	}
 }

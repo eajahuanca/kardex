@@ -54,6 +54,7 @@
 		</a>
 		<b class="arrow"></b>
 	</li>
+
 	<li class="">
 		<a href="{{ url('/kardexin') }}">
 			<i class="menu-icon fa fa-desktop"></i>
@@ -62,4 +63,11 @@
 		<b class="arrow"></b>
 	</li>
 
+	<li class="">
+		<a href="{{ url('/lkardex') }}">
+			<i class="menu-icon fa fa-bars"></i>
+			<span class="menu-text">Listar Kardex</span>
+		</a>
+		<b class="arrow"></b>
+	</li>
 </ul><!-- /.nav-list -->
