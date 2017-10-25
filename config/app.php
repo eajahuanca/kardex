@@ -179,6 +179,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         'nilsenj\Toastr\ToastrServiceProvider',
+        //Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -232,6 +233,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Toastr' => 'nilsenj\Toastr\Facades\Toastr',
+        //'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

@@ -10,7 +10,7 @@
 @section('cuerpo')
     <div class="row">
         <div class="col-xs-12 col-sm-12">
-            {!! Form::open(['route' => 'hcliente.store', 'method' => 'post']) !!}
+            {!! Form::open(['route' => 'hcliente.store', 'method' => 'post', 'name' => 'formHijo']) !!}
 
             <div class="clearfix">
                 <div class="pull-left">
@@ -56,4 +56,11 @@
 @endsection
 
 @section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#cli_nit').click(function(event) {
+                $('#cli_nit').val($('#cli_ci').val(););
+            });
+        });
+    </script>
 @endsection

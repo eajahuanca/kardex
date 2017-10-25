@@ -25,3 +25,5 @@ Route::resource('/salida', 'SalidaController');
 Route::resource('/kardexout', 'RegSalidaController');
 Route::resource('/kardexin', 'RegEntradaController');
 Route::resource('/lkardex', 'ListarController');
+
+Route::resource('/reporteh', 'ReporteHController');

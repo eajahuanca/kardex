@@ -51,7 +51,7 @@
                 <span class="input-group-addon">
                     <i class="ace-icon fa fa-bars"></i>
                 </span>
-                {{ Form::text('cli_nit',null, ['class' => 'form-control', 'placeholder' => 'NIT del cliente']) }}
+                {{ Form::text('cli_nit',null, ['class' => 'form-control', 'placeholder' => 'NIT del cliente', 'id' => 'cli_nit']) }}
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@
                 <span class="input-group-addon">
                     <i class="ace-icon fa fa-bars"></i>
                 </span>
-                {{ Form::text('cli_direccion',null, ['class' => 'form-control', 'placeholder' => 'direccion']) }}
+                {{ Form::text('cli_direccion',0, ['class' => 'form-control', 'placeholder' => 'direccion']) }}
             </div>
         </div>
     </div>
@@ -79,7 +79,7 @@
                 <span class="input-group-addon">
                     <i class="ace-icon fa fa-phone"></i>
                 </span>
-                {{ Form::text('cli_contacto',null, ['class' => 'form-control', 'placeholder' => 'Contacto']) }}
+                {{ Form::text('cli_contacto',0, ['class' => 'form-control', 'placeholder' => 'Contacto']) }}
             </div>
         </div>
     </div>
