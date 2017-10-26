@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('us_genero');
             $table->string('email',100)->unique();
             $table->string('us_cuenta');
-            $table->enum('us_tipo',['Administrador','Almacen','kardex']);
+            $table->enum('us_tipo',['ADMINISTRADOR','ALMACEN','VENTA','GERENTE']);
             $table->string('password');
             $table->boolean('us_estado')->default(true);
             $table->text('us_obs');
