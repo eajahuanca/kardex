@@ -30,6 +30,7 @@ class SalidaController extends Controller
 		$cliente = PCliente::join('hclientes','pclientes.id','=','hclientes.idpcliente')
 					->where('pclientes.cli_estado','=','1')
 					->where('hclientes.cli_estado','=','1')
+					->where('pclientes.id','<>','1')
 					->select(DB::raw('CONCAT(pclientes.cli_nombre," - ",hclientes.cli_nombre," NIT: ",hclientes.cli_nit) AS nombre'),'hclientes.id')
 					->pluck('nombre','hclientes.id');
 		return view('admin.salida.index')

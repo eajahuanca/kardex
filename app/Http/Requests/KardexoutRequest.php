@@ -24,15 +24,15 @@ class KardexoutRequest extends FormRequest
     public function rules()
     {
         return [
-            'mov_salida' => 'required',
-            'idarticulo' => 'required'
+            'mov_salida' => 'required|numeric',
+            'idarticulo' => 'required',
         ];
     }
 
-    public function messages(){
+    public function attributes(){
         return [
-            'mov_salida.required' => 'El campo Cantidad es requerido',
-            'idarticulo.required' => 'El campo Nombre de Artículo es requerido'
+            'mov_salida' => 'Cantidad',
+            'idarticulo' => 'Nombre de Artículo',
         ];
     }
 }

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12 col-sm-4">
-        <div>
+        <div class="{{ $errors->has('art_codigo')?' has-error':'' }}">
             {{ Form::label('art_codigo', 'Codigo de Artículo') }}    
             <div class="input-group">
                 <span class="input-group-addon">
@@ -8,6 +8,11 @@
                 </span>
                 {{ Form::text('art_codigo',null, ['class' => 'form-control', 'placeholder' => 'codigo']) }}
             </div>
+            @if($errors->has('art_codigo'))
+                <span style="color:red;">
+                    <strong>{{ $errors->first('art_codigo') }}</strong>
+                </span>
+            @endif
         </div>
     </div>
     <div class="col-xs-12 col-sm-4">
@@ -26,7 +31,7 @@
 <br>
 <div class="row">
     <div class="col-xs-12 col-sm-12">
-        <div>
+        <div class="{{ $errors->has('art_descripcion')?' has-error':'' }}">
             {{ Form::label('art_descripcion', 'Descripción de Artículo') }}    
             <div class="input-group">
                 <span class="input-group-addon">
@@ -34,6 +39,11 @@
                 </span>
                 {{ Form::text('art_descripcion',null, ['class' => 'form-control', 'placeholder' => 'descripcion']) }}
             </div>
+            @if($errors->has('art_descripcion'))
+                <span style="color:red;">
+                    <strong>{{ $errors->first('art_descripcion') }}</strong>
+                </span>
+            @endif
         </div>
     </div>
 </div>

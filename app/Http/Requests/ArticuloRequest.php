@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SalidaRequest extends FormRequest
+class ArticuloRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +23,17 @@ class SalidaRequest extends FormRequest
      */
     public function rules()
     {
+        $articulo = $this->route('articulo');
         return [
-            'mov_factura' => 'required|numeric',
-            'idhcliente' => 'required',
+            'art_codigo' => 'required|min:7|unique:articulos,art_codigo,'.$articulo.'art_codigo',
+            'art_descripcion' => 'required|min:20|unique:articulos,art_descripcion,'.$articulo.'art_descripcion',
         ];
     }
 
     public function attributes(){
         return [
-            'mov_factura' => 'Factura',
-            'idhcliente' => 'Nombre del Cliente',
+            'art_codigo' => 'Código de Artículo',
+            'art_descripcion' => 'Descripción'
         ];
     }
 }

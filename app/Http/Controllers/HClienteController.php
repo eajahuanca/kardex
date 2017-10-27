@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ClienteHRequest;
 use Illuminate\Support\Facades\Auth;
 use App\HCliente;
 use Carbon\Carbon;
@@ -12,7 +13,7 @@ use Toastr;
 class HClienteController extends Controller
 {
     public function __construct(){
-        Carbon::setlocale('es');
+        Carbon::setLocale('es');
     }
 
     public function index(){
@@ -22,12 +23,12 @@ class HClienteController extends Controller
     }
 
     public function create(){
-        $cli = DB::table('pclientes')->where('cli_estado','=','1')->pluck('cli_nombre','id');
+        $cli = DB::table('pclientes')->where('cli_estado','=','1')->where('id','<>',1)->pluck('cli_nombre','id');
         return view('admin.hcliente.create')
                 ->with('pcliente', $cli);
     }
 
-    public function store(Request $request){
+    public function store(ClienteHRequest $request){
         try{
             $cli = new HCliente($request->all());
             $cli->idregistra = Auth::user()->id;
@@ -55,7 +56,7 @@ class HClienteController extends Controller
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(ClienteHRequest $request, $id){
         try{
             $cli = HCliente::find($id);
             $cli->fill($request->all());

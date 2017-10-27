@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ReporteHRequest;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Toastr;
@@ -22,7 +23,7 @@ class ReporteHController extends Controller
     		->with('articulo', $articulo);
     }
 
-    public function store(Request $request){
+    public function store(ReporteHRequest $request){
     	try{
 
     		$firmaVenta = strtoupper(Auth::user()->us_nombre.' '.Auth::user()->us_paterno.' '.Auth::user()->us_materno);

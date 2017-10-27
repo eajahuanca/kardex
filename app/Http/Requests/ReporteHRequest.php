@@ -4,15 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SalidaRequest extends FormRequest
+class ReporteHRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize(){
         return true;
     }
 
@@ -21,18 +20,19 @@ class SalidaRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules(){
         return [
-            'mov_factura' => 'required|numeric',
-            'idhcliente' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+            'articulo' => 'required',
         ];
     }
 
     public function attributes(){
         return [
-            'mov_factura' => 'Factura',
-            'idhcliente' => 'Nombre del Cliente',
+            'start' => 'Fecha Inicial',
+            'end' => 'Fecha Final',
+            'articulo' => 'Artículo',
         ];
     }
 }

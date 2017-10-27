@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ArticuloRequest;
 use App\Proveedor;
 use App\Articulo;
 use Carbon\Carbon;
@@ -27,7 +28,7 @@ class ArticuloController extends Controller
                 ->with('proveedor', $proveedor);
     }
 
-    public function store(Request $request){
+    public function store(ArticuloRequest $request){
         try{
             $art = new Articulo($request->all());
             $art->save();
@@ -53,7 +54,7 @@ class ArticuloController extends Controller
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(ArticuloRequest $request, $id){
         try{
             $art = Articulo::find($id);
             $art->fill($request->all());

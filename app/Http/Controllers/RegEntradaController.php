@@ -24,6 +24,7 @@ class RegEntradaController extends Controller
     public function index(){
     	$articulo = Articulo::where('art_estado','=','1')
 				->orderBy('art_codigo','DESC')
+
 				->select(DB::raw('CONCAT(art_codigo," - ",art_descripcion) AS articulo'),'id')
 				->pluck('articulo','id');
 		return view('admin.entrada.create')

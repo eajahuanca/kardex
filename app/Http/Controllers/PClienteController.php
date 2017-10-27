@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ClientePRequest;
 use App\PCliente;
 use Carbon\Carbon;
 use Toastr;
@@ -10,11 +11,11 @@ use Toastr;
 class PClienteController extends Controller
 {
     public function __construct(){
-        Carbon::setlocale('es');
+        Carbon::setLocale('es');
     }
 
     public function index(){
-        $cliente = PCliente::orderBy('created_at','DESC')->get();
+        $cliente = PCliente::orderBy('id','DESC')->get();
         return view('admin.pcliente.index')
                 ->with('cliente', $cliente);
     }
@@ -23,7 +24,7 @@ class PClienteController extends Controller
         return view('admin.pcliente.create');
     }
 
-    public function store(Request $request){
+    public function store(ClientePRequest $request){
         try{
             $cli = new PCliente($request->all());
             $cli->save();
@@ -46,7 +47,7 @@ class PClienteController extends Controller
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(ClientePRequest $request, $id){
         try{
             $cli = PCliente::find($id);
             $cli->fill($request->all());

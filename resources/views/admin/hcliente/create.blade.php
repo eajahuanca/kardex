@@ -59,7 +59,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('#cli_nit').click(function(event) {
-                $('#cli_nit').val($('#cli_ci').val(););
+                $('#cli_nit').val($('#cli_ci').val());
             });
         });
     </script>

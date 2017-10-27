@@ -8,6 +8,11 @@
                 </span>
                 {{ Form::text('cli_ci',null, ['class' => 'form-control', 'placeholder' => 'carnet']) }}
             </div>
+            @if($errors->has('cli_ci'))
+                <span style="color:red;">
+                    <strong>{{ $errors->first('cli_ci') }}</strong>
+                </span>
+            @endif
         </div>
     </div>
     <div class="col-xs-12 col-sm-1">
@@ -33,6 +38,11 @@
                 </span>
                 {{ Form::text('cli_nombre',null, ['class' => 'form-control', 'placeholder' => 'nombre del cliente']) }}
             </div>
+            @if($errors->has('cli_nombre'))
+                <span style="color:red;">
+                    <strong>{{ $errors->first('cli_nombre') }}</strong>
+                </span>
+            @endif
         </div>
     </div>
     <div class="col-xs-12 col-sm-4">
@@ -44,6 +54,11 @@
                 </span>
                 {{ Form::text('cli_nit',null, ['class' => 'form-control', 'placeholder' => 'NIT del cliente']) }}
             </div>
+            @if($errors->has('cli_nit'))
+                <span style="color:red;">
+                    <strong>{{ $errors->first('cli_nit') }}</strong>
+                </span>
+            @endif
         </div>
     </div>
 </div>
@@ -58,6 +73,11 @@
                 </span>
                 {{ Form::text('cli_direccion',null, ['class' => 'form-control', 'placeholder' => 'direccion']) }}
             </div>
+            @if($errors->has('cli_direccion'))
+                <span style="color:red;">
+                    <strong>{{ $errors->first('cli_direccion') }}</strong>
+                </span>
+            @endif
         </div>
     </div>
 </div>
@@ -72,6 +92,11 @@
                 </span>
                 {{ Form::text('cli_contacto',null, ['class' => 'form-control', 'placeholder' => 'Contacto']) }}
             </div>
+            @if($errors->has('cli_contacto'))
+                <span style="color:red;">
+                    <strong>{{ $errors->first('cli_contacto') }}</strong>
+                </span>
+            @endif
         </div>
     </div>
     <div class="col-xs-12 col-sm-4">
