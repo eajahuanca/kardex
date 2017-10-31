@@ -13,7 +13,7 @@ class HCliente extends Model
 		return $this->belongsTo('App\PCliente','idpcliente','id');
 	}
 
-	public function hcliente(){
-		return $this->hasMany('App\HCliente');
+	public function movimientos(){
+		return $this->hasMany('App\Movimiento');
 	}
 }

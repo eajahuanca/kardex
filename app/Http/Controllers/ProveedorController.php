@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ProveedorRequest;
 use Carbon\Carbon;
 use Toastr;
 use App\Proveedor;
@@ -23,7 +24,7 @@ class ProveedorController extends Controller
         return view('admin.proveedor.create');
     }
 
-    public function store(Request $request){
+    public function store(ProveedorRequest $request){
         try{
             $pro = new Proveedor($request->all());
             $pro->save();
@@ -47,7 +48,7 @@ class ProveedorController extends Controller
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(ProveedorRequest $request, $id){
         try{
             $pro = Proveedor::find($id);
             $pro->fill($request->all());

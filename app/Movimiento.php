@@ -17,11 +17,11 @@ class Movimiento extends Model
     	return $this->belongsTo('App\User','idactualiza','id');
     }
 
-    public function articulo(){
+    public function articulos(){
     	return $this->belongsTo('App\Articulo','idarticulo','id');
     }
 
-    public function hcliente(){
+    public function hclientes(){
     	return $this->belongsTo('App\HCliente','idhcliente','id');
     }
 }

@@ -34,9 +34,9 @@
                         @foreach($kardex as $item)
                         <tr>
                             <td>{{ $item->created_at }}</td>
-                            <td>{{ $item->hcliente->cli_nombre.', NIT: '.$item->hcliente->cli_nit }}</td>
+                            <td>{{ $item->hclientes->cli_nombre.', NIT: '.$item->hclientes->cli_nit }}</td>
                             <td align="center"><b>{{ $item->mov_factura }}</b></td>
-                            <td>{{ $item->articulo->art_codigo.' - '.$item->articulo->art_descripcion }}</td>
+                            <td>{{ $item->articulos->art_codigo.' - '.$item->articulos->art_descripcion }}</td>
                             <td style="color:green;text-align:right;"><b>{{ $item->mov_entrada }}</b></td>
                             <td style="color:red;text-align:right;"><b>{{ $item->mov_salida }}</b></td>
                             <td style="color:blue;text-align:right;"><b>{{ $item->mov_total }}</b></td>

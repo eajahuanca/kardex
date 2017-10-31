@@ -50,10 +50,10 @@
 					<ul class="nav ace-nav">
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								@if(Auth::user()->us_genero=='Femenino')
-								<img class="nav-user-photo" src="{{asset('plugin/assets/images/avatars/avatar3.png')}}" alt="Bienvenido Usuario" />
+								@if(Auth::user()->us_genero=='Femenina')
+								<img class="nav-user-photo" src="{{asset('plugin/assets/images/avatars/avatarFem.png')}}" alt="Bienvenido Usuario" width="48px" height="48px" />
 								@else
-								<img class="nav-user-photo" src="{{asset('plugin/assets/images/avatars/avatar4.png')}}" alt="Bienvenido Usuario" />
+								<img class="nav-user-photo" src="{{asset('plugin/assets/images/avatars/avatar5.png')}}" alt="Bienvenido Usuario" />
 								@endif
 								<span class="user-info">
 									<small>Bienvenido,</small>
@@ -68,7 +68,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="profile.html">
+									<a href="{{ route('user.show',Auth::user()->id) }}">
 										<i class="ace-icon fa fa-user"></i> Mis Datos
 									</a>
 								</li>

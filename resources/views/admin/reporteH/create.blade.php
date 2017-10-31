@@ -54,7 +54,7 @@
 	<table>
 		<thead>
 			<tr>
-				<td ><img src="{{ asset('plugin/login/img/zaire.jpg') }}" width="110px" height="67px"></td>
+				<td ><img src="{{ asset('plugin/login/img/logo.jpg') }}" width="110px" height="67px"></td>
 				<td class="miTitulo">KARDEX</td>
 			</tr>
 		</thead>
@@ -66,13 +66,13 @@
 		<tbody>
 			<tr>
 				<td colspan="4" class="miSubTitulo">CODIGO</td>
-				<td class="contenido1">IC000125</td>
+				<td class="contenido1">{{ $arrayCabecera[0] }}</td>
 				<td class="miSubTitulo">PROVEEDOR</td>
-				<td colspan="2" class="contenido1">KT&G</td>
+				<td colspan="2" class="contenido1">{{ $arrayCabecera[2] }}</td>
 			</tr>
 			<tr>
 				<td colspan="4" class="miSubTitulo">ARTICULO</td>
-				<td class="contenido1">Cigarrillos This Blue KSB 20s 10M</td>
+				<td class="contenido1">{{ $arrayCabecera[1] }}</td>
 				<td class="miSubTitulo">METODO</td>
 				<td colspan="2" class="contenido1">P.E.P.S.</td>
 			</tr>
@@ -103,9 +103,9 @@
 				<td class="contenidoDatos">{{ year($item->created_at) }}</td>
 				<td class="contenidoDetalle">
 					@if($item->mov_entrada>0 && $item->mov_salida==0)
-						{!! 'Empresa: <b>'.$item->hcliente->cli_nombre.'</b>, '.$item->mov_obs !!}
+						{!! 'Empresa: <b>'.$item->hclientes->cli_nombre.'</b>, '.$item->mov_obs !!}
 					@else
-						{!! 'Factura N°: <b>'.$item->mov_factura.'</b>, Cliente: '.$item->hcliente->cli_nombre !!}
+						{!! 'Factura N°: <b>'.$item->mov_factura.'</b>, Cliente: '.$item->hclientes->cli_nombre !!}
 					@endif
 				</td>
 				<td class="contenidoDatos">{{ $item->mov_entrada }}</td>
@@ -132,17 +132,11 @@
 				<td align="center">____________________</td>
 			</tr>
 			<tr>
-				<td class="contenidoDatos">{{ $firmaVenta }}</td>
-				<td class="contenidoDatos">{{ $firmaAlmacen }}</td>
-				<td class="contenidoDatos">{{ $firmaGerente }}</td>
-			</tr>
-			<tr>
 				<td class="contenidoDatos"><b>AUXILIAR DE VENTAS</b></td>
 				<td class="contenidoDatos"><b>ENCARGADO DE ALMACEN</b></td>
 				<td class="contenidoDatos"><b>GERENTE GENERAL</b></td>
 			</tr>
 		</table>	
 	</div>
-	<div class="saltoPagina"></div>
 </body>
 </html>

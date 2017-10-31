@@ -15,15 +15,16 @@ Auth::routes();
 Route::get('/', function () {
     return redirect('/login');
 });
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/proveedor', 'ProveedorController');
-Route::resource('/articulo', 'ArticuloController');
-Route::resource('/pcliente', 'PClienteController');
-Route::resource('/hcliente', 'HClienteController');
-Route::resource('/salida', 'SalidaController');
-Route::resource('/kardexout', 'RegSalidaController');
-Route::resource('/kardexin', 'RegEntradaController');
-Route::resource('/lkardex', 'ListarController');
-
-Route::resource('/reporteh', 'ReporteHController');
+Route::group(['middleware' => 'auth'], function(){
+	Route::resource('/user', 'UserController');
+	Route::get('/home', 'HomeController@index')->name('home');
+	Route::resource('/proveedor', 'ProveedorController');
+	Route::resource('/articulo', 'ArticuloController');
+	Route::resource('/pcliente', 'PClienteController');
+	Route::resource('/hcliente', 'HClienteController');
+	Route::resource('/salida', 'SalidaController');
+	Route::resource('/kardexout', 'RegSalidaController');
+	Route::resource('/kardexin', 'RegEntradaController');
+	Route::resource('/lkardex', 'ListarController');
+	Route::resource('/reporteh', 'ReporteHController');
+});

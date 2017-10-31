@@ -51,10 +51,12 @@
 	</style>
 </head>
 <body>
+	@include('admin.fechas')
+	@foreach($cabecera as $cab)
 	<table>
 		<thead>
 			<tr>
-				<td ><img src="{{ asset('plugin/login/img/zaire.jpg') }}" width="110px" height="67px"></td>
+				<td ><img src="{{ asset('plugin/login/img/logo.jpg') }}" width="110px" height="67px"></td>
 				<td class="miTitulo">KARDEX</td>
 			</tr>
 		</thead>
@@ -66,13 +68,13 @@
 		<tbody>
 			<tr>
 				<td colspan="4" class="miSubTitulo">CODIGO</td>
-				<td class="contenido1">IC000125</td>
+				<td class="contenido1">{{ $cab->articulos->art_codigo }}</td>
 				<td class="miSubTitulo">PROVEEDOR</td>
-				<td colspan="2" class="contenido1">KT&G</td>
+				<td colspan="2" class="contenido1">{{ $cab->articulos->proveedors->pro_nombre }}</td>
 			</tr>
 			<tr>
 				<td colspan="4" class="miSubTitulo">ARTICULO</td>
-				<td class="contenido1">Cigarrillos This Blue KSB 20s 10M</td>
+				<td class="contenido1">{{ $cab->articulos->art_descripcion }}</td>
 				<td class="miSubTitulo">METODO</td>
 				<td colspan="2" class="contenido1">P.E.P.S.</td>
 			</tr>
@@ -93,8 +95,17 @@
 				<td width="12%">CANTIDAD</td>
 				<td width="12%">CANTIDAD</td>
 			</tr>
-			@include('admin.fechas')
-			<?php $cont = 1; $totalEntrada = 0; $totalSalida = 0; $totalSaldo = 0; ?>
+			
+			<?php 
+				$cont = 1; $totalEntrada = 0; $totalSalida = 0; $totalSaldo = 0; 
+				$kardex = App\Movimiento::whereDate('created_at','>=',$nuevaFechaStart)
+                                    ->whereDate('created_at','<=',$nuevaFechaEnd)
+                                    ->where('idarticulo','=',$cab->idarticulo)
+                                    ->orderBy('idarticulo','ASC')
+                                    ->orderBy('created_at','ASC')
+                                    ->get();
+                                    
+			?>
 			@foreach($kardex as $item)
 			<tr>
 				<td class="contenidoDatos">{{ $cont++ }}</td>
@@ -103,9 +114,9 @@
 				<td class="contenidoDatos">{{ year($item->created_at) }}</td>
 				<td class="contenidoDetalle">
 					@if($item->mov_entrada>0 && $item->mov_salida==0)
-						{!! 'Empresa: <b>'.$item->hcliente->cli_nombre.'</b>, '.$item->mov_obs !!}
+						{!! 'Empresa: <b>'.$item->hclientes->cli_nombre.'</b>, '.$item->mov_obs !!}
 					@else
-						{!! 'Factura N°: <b>'.$item->mov_factura.'</b>, Cliente: '.$item->hcliente->cli_nombre !!}
+						{!! 'Factura N°: <b>'.$item->mov_factura.'</b>, NIT: <b>'.$item->hclientes->cli_nit.'</b> Cliente: '.$item->hclientes->cli_nombre !!}
 					@endif
 				</td>
 				<td class="contenidoDatos">{{ $item->mov_entrada }}</td>
@@ -132,11 +143,6 @@
 				<td align="center">____________________</td>
 			</tr>
 			<tr>
-				<td class="contenidoDatos">{{ $firmaVenta }}</td>
-				<td class="contenidoDatos">{{ $firmaAlmacen }}</td>
-				<td class="contenidoDatos">{{ $firmaGerente }}</td>
-			</tr>
-			<tr>
 				<td class="contenidoDatos"><b>AUXILIAR DE VENTAS</b></td>
 				<td class="contenidoDatos"><b>ENCARGADO DE ALMACEN</b></td>
 				<td class="contenidoDatos"><b>GERENTE GENERAL</b></td>
@@ -144,5 +150,6 @@
 		</table>	
 	</div>
 	<div class="saltoPagina"></div>
+	@endforeach
 </body>
 </html>

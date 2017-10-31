@@ -8,22 +8,26 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'users';
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
+                            'us_nombre', 
+                            'us_paterno', 
+                            'us_materno',
+                            'us_genero',
+                            'email',
+                            'us_cuenta',
+                            'us_tipo',
+                            'us_estado',
+                            'us_obs',
+                            'created_at',
+                            'updated_at'
+                        ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password', 'remember_token',
-    ];
+                            'password',
+                            'remember_token',
+                        ];
+    public function movimientos(){
+        return $this->hasMany('App\Movimiento');
+    }
 }

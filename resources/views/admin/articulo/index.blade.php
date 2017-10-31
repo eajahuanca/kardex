@@ -52,7 +52,7 @@
                             <td>{{ $item->art_codigo }}</td>
                             <td>{{ $item->art_descripcion }}</td>
                             <td>{{ $item->art_unidad }}</td>
-                            <td>{{ $item->proveedor->pro_nombre }}</td>
+                            <td>{{ $item->proveedors->pro_nombre }}</td>
                             <td>
                                 @if($item->art_estado)
                                     <span class="label label-sm label-warning">Activo</span>
