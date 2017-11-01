@@ -16,10 +16,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
-        Validator::resolver(function($translator, $data, $rules, $messages)
+        Validator::resolver(function($translator, $data, $rules, $messages, $attributes)
         {
-            return new \App\Validationpass\Validator($translator, $data, $rules, $messages);
+            return new \App\Validationpass\Validator($translator, $data, $rules, $messages, $attributes);
         });
     }
 

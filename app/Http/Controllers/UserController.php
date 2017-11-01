@@ -17,26 +17,35 @@ class UserController extends Controller
     }
 
     public function index(){
-        $user = User::orderBy('created_at')->get();
-        return view('admin.user.index')
-            ->with('user', $user);
+        if(Auth::user()->us_tipo == "ADMINISTRADOR"){
+            $user = User::orderBy('created_at')->get();
+            return view('admin.user.index')
+                ->with('user', $user);
+        }
+        return view('admin.error.index');
     }
 
     public function create(){
-        return view('admin.user.create');
+        if(Auth::user()->us_tipo == "ADMINISTRADOR"){
+            return view('admin.user.create');
+        }
+        return view('admin.error.index');
     }
 
     public function store(UserRequest $request)
     {
-        try{
-            $user = new USer($request->all());
-            $user->password = bcrypt($request->input('password'));
-            $user->save();
-            Toastr::success('Los datos del usuario '.$user->us_nombre.', se registraron de manera correcta','Registro');
-        }catch(\Exception $ex){
-            Toastr::error('Ocurrio un error: '.$ex->getMessage(),'Error');
+        if(Auth::user()->us_tipo == "ADMINISTRADOR"){
+            try{
+                $user = new USer($request->all());
+                $user->password = bcrypt($request->input('password'));
+                $user->save();
+                Toastr::success('Los datos del usuario '.$user->us_nombre.', se registraron de manera correcta','Registro');
+            }catch(\Exception $ex){
+                Toastr::error('Ocurrio un error: '.$ex->getMessage(),'Error');
+            }
+            return redirect()->route('user.index');
         }
-        return redirect()->route('user.index');
+        return view('admin.error.index');
     }
 
     public function show($id)
@@ -52,28 +61,34 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        try{
-            $user = User::find($id);
-            Toastr::warning('Usted va a realizar cambios','Modificar');
-            return view('admin.user.edit')
-                ->with('user', $user);
-        }catch(\Exception $ex){
-            Toastr::error('Ocurrio un error: '.$ex->getMessage(),'Error');
-            return redirect()->route('user.index');
+        if(Auth::user()->us_tipo == "ADMINISTRADOR"){
+            try{
+                $user = User::find($id);
+                Toastr::warning('Usted va a realizar cambios','Modificar');
+                return view('admin.user.edit')
+                    ->with('user', $user);
+            }catch(\Exception $ex){
+                Toastr::error('Ocurrio un error: '.$ex->getMessage(),'Error');
+                return redirect()->route('user.index');
+            }
         }
+        return view('admin.error.index');
     }
 
     public function update(Request $request, $id)
     {
-        try{
-            $user = User::find($id);
-            $user->fill($request->all());
-            $user->update();
-            Toastr::success('Los datos del usuario '.$user->us_nombre.', se actualizaron se manera correcta','Actualizado');
-        }catch(\Exception $ex){
-            Toastr::error('Ocurrio un error: '.$ex->getMessage(),'Error');
+        if(Auth::user()->us_tipo == "ADMINISTRADOR"){
+            try{
+                $user = User::find($id);
+                $user->fill($request->all());
+                $user->update();
+                Toastr::success('Los datos del usuario '.$user->us_nombre.', se actualizaron se manera correcta','Actualizado');
+            }catch(\Exception $ex){
+                Toastr::error('Ocurrio un error: '.$ex->getMessage(),'Error');
+            }
+            return redirect()->route('user.index');
         }
-        return redirect()->route('user.index');
+        return view('admin.error.index');
     }
 
     public function getForm(){
