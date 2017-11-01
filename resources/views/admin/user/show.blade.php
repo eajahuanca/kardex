@@ -65,11 +65,11 @@
                         </div>
                         <div class="hr hr12 dotted"></div>
                         <div class="center">
-                            <button type="button" class="btn btn-sm btn-primary btn-white btn-round">
+                            <a href="{{ url('/pnew') }}" class="btn btn-sm btn-primary btn-white btn-round">
                                 <i class="ace-icon fa fa-lock bigger-150 middle orange2"></i>
                                 <span class="bigger-110">Cambiar Contraseña</span>
                                 <i class="icon-on-right ace-icon fa fa-arrow-right"></i>
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-9">

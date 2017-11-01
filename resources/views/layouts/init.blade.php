@@ -63,7 +63,7 @@
 							</a>
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="">
+									<a href="{{ url('/pnew') }}">
 										<i class="ace-icon fa fa-cog"></i> Configuración
 									</a>
 								</li>

@@ -17,6 +17,8 @@ Route::get('/', function () {
 });
 Route::group(['middleware' => 'auth'], function(){
 	Route::resource('/user', 'UserController');
+	Route::get('/pnew', 'UserController@getForm');
+	Route::post('/newp', 'UserController@password');
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('/proveedor', 'ProveedorController');
 	Route::resource('/articulo', 'ArticuloController');

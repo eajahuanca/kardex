@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\PasswordRequest;
 use App\User;
 use Toastr;
 use Carbon\Carbon;
@@ -72,5 +74,26 @@ class UserController extends Controller
             Toastr::error('Ocurrio un error: '.$ex->getMessage(),'Error');
         }
         return redirect()->route('user.index');
+    }
+
+    public function getForm(){
+        if (Auth::user()->id) {
+            return view('admin.user.newPassword');
+        }
+        Toastr::error('Usted no cuenta con sufientes permisos para acceder', 'Error');
+        return redirect()->route('user.index');
+    }
+
+    public function password(PasswordRequest $request){
+        try{
+            $user = User::find(Auth::user()->id);
+            $user->fill($request->all());
+            $user->password = bcrypt($request->input('password'));
+            $user->update();
+            Toastr::success('Se actualizo de manera satisfactoria la contraseña, por lo que se recomienda salir y volver a ingresar al sistema', 'Correcto');
+        }catch(\Exception $ex){
+            Toastr::error('Ocurrió un error: '.$ex->getMessage(),'Error');
+        }
+        return redirect()->route('home');
     }
 }
