@@ -29,4 +29,5 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('/kardexin', 'RegEntradaController');
 	Route::resource('/lkardex', 'ListarController');
 	Route::resource('/reporteh', 'ReporteHController');
+	Route::resource('/reporteph', 'ReportePHController');
 });

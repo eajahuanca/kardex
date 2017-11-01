@@ -105,7 +105,7 @@
 					@if($item->mov_entrada>0 && $item->mov_salida==0)
 						{!! 'Empresa: <b>'.$item->hclientes->cli_nombre.'</b>, '.$item->mov_obs !!}
 					@else
-						{!! 'Factura N°: <b>'.$item->mov_factura.'</b> NIT: <b>'.$item->hclientes->cli_nit.'</b>, Cliente: '.$item->hclientes->cli_nombre !!}
+						{!! 'Factura N°: <b>'.$item->mov_factura.'</b> Cliente Padre: '.$item->hclientes->pclientes->cli_nombre.' NIT: <b>'.$item->hclientes->pclientes->cli_nit.'</b>, Cliente Hijo: '.$item->hclientes->cli_nombre.' NIT: <b>'.$item->hclientes->cli_nit.'</b>' !!}
 					@endif
 				</td>
 				<td class="contenidoDatos">{{ $item->mov_entrada }}</td>

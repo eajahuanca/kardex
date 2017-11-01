@@ -82,7 +82,7 @@
 	</li>
 
 	<li class="">
-		<a href=".">
+		<a href="{{ url('/reporteph') }}">
 			<i class="menu-icon fa fa-file-pdf-o"></i>
 			<span class="menu-text">Reporte default</span>
 		</a>

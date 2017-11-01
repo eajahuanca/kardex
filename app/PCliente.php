@@ -9,7 +9,7 @@ class PCliente extends Model
     protected $table = 'pclientes';
 	protected $fillable = ['id','cli_ci','cli_exp','cli_nombre','cli_nit','cli_direccion','cli_contacto','cli_estado'];
 
-	public function clienteHijo(){
+	public function hclientes(){
 		return $this->hasMany('App\HCliente');
 	}
 }

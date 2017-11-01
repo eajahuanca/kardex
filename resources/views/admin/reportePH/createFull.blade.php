@@ -51,6 +51,8 @@
 	</style>
 </head>
 <body>
+	@include('admin.fechas')
+	@foreach($cabecera as $cab)
 	<table>
 		<thead>
 			<tr>
@@ -66,13 +68,13 @@
 		<tbody>
 			<tr>
 				<td colspan="4" class="miSubTitulo">CODIGO</td>
-				<td class="contenido1">{{ $arrayCabecera[0] }}</td>
+				<td class="contenido1">{{ $cab->articulos->art_codigo }}</td>
 				<td class="miSubTitulo">PROVEEDOR</td>
-				<td colspan="2" class="contenido1">{{ $arrayCabecera[2] }}</td>
+				<td colspan="2" class="contenido1">{{ $cab->articulos->proveedors->pro_nombre }}</td>
 			</tr>
 			<tr>
 				<td colspan="4" class="miSubTitulo">ARTICULO</td>
-				<td class="contenido1">{{ $arrayCabecera[1] }}</td>
+				<td class="contenido1">{{ $cab->articulos->art_descripcion }}</td>
 				<td class="miSubTitulo">METODO</td>
 				<td colspan="2" class="contenido1">P.E.P.S.</td>
 			</tr>
@@ -93,8 +95,17 @@
 				<td width="12%">CANTIDAD</td>
 				<td width="12%">CANTIDAD</td>
 			</tr>
-			@include('admin.fechas')
-			<?php $cont = 1; $totalEntrada = 0; $totalSalida = 0; $totalSaldo = 0; ?>
+			
+			<?php 
+				$cont = 1; $totalEntrada = 0; $totalSalida = 0; $totalSaldo = 0; 
+				$kardex = App\Movimiento::whereDate('created_at','>=',$nuevaFechaStart)
+                                    ->whereDate('created_at','<=',$nuevaFechaEnd)
+                                    ->where('idarticulo','=',$cab->idarticulo)
+                                    ->orderBy('idarticulo','ASC')
+                                    ->orderBy('created_at','ASC')
+                                    ->get();
+                                    
+			?>
 			@foreach($kardex as $item)
 			<tr>
 				<td class="contenidoDatos">{{ $cont++ }}</td>
@@ -105,7 +116,7 @@
 					@if($item->mov_entrada>0 && $item->mov_salida==0)
 						{!! 'Empresa: <b>'.$item->hclientes->cli_nombre.'</b>, '.$item->mov_obs !!}
 					@else
-						{!! 'Factura N°: <b>'.$item->mov_factura.'</b> NIT: <b>'.$item->hclientes->cli_nit.'</b>, Cliente: '.$item->hclientes->cli_nombre !!}
+						{!! 'Factura N°: <b>'.$item->mov_factura.'</b> Cliente Padre: '.$item->hclientes->pclientes->cli_nombre.' NIT: <b>'.$item->hclientes->pclientes->cli_nit.'</b>, Cliente Hijo: '.$item->hclientes->cli_nombre.' NIT: <b>'.$item->hclientes->cli_nit.'</b>' !!}
 					@endif
 				</td>
 				<td class="contenidoDatos">{{ $item->mov_entrada }}</td>
@@ -138,5 +149,7 @@
 			</tr>
 		</table>	
 	</div>
+	<div class="saltoPagina"></div>
+	@endforeach
 </body>
 </html>
