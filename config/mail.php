@@ -16,6 +16,7 @@ return [
     |
     */
 
+    //'driver' => env('mailgun', 'smtp'),
     'driver' => env('MAIL_DRIVER', 'smtp'),
 
     /*
@@ -56,8 +57,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'postmaster@sandbox795966584b6b4605bc6be8dcbdf3ec2e.mailgun.org'),
+        'name' => env('MAIL_FROM_NAME', 'Administrador del Sistema Kardex'),
     ],
 
     /*
